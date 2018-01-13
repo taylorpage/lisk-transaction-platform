@@ -1,10 +1,10 @@
-import "./Wallet.css";
+import "./Platform.css";
 import React from "react";
 
 function template() {
   return (
-    <div className="wallet">
-      <h1>Wallet</h1>
+    <div className="platform">
+      <h1>Platform</h1>
     </div>
   );
 };
