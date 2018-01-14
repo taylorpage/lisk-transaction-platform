@@ -12,7 +12,13 @@ class Login extends React.Component {
     super(props);
     this.state = {
       passphrase: ''
-    }    
+    }
+    console.log('hello');
+
+    // User is already signed in redirect to the platform
+    if (localStorage.getItem('publicKey')) {
+      this.props.history.push('/platform');
+    }
   }
 
   // Sets the state when form changes
@@ -37,6 +43,7 @@ class Login extends React.Component {
       privateKey: keys.privateKey,
       publicKey: keys.publicKey
     }, function() {
+      localStorage.setItem('publicKey', keys.publicKey);
       this.props.history.push('/platform');
     })
   }

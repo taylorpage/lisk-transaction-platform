@@ -9,7 +9,7 @@ class Platform extends React.Component {
   bip39 = bip39;
 
   constructor(props) {
-    super();
+    super(props);
 
     this.state = {
       passPhrase: '',
@@ -17,6 +17,11 @@ class Platform extends React.Component {
       // Keys
       publicKey: '',
       privateKey: ''
+    }
+
+    // Redirect to login if user is not signed in
+    if (!localStorage.getItem('publicKey')) {
+      this.props.history.push('/login');
     }
 
     // Set to lisk test net
@@ -27,6 +32,12 @@ class Platform extends React.Component {
   // Sets lisk to test environment
   setTestnet() {
     this.lisk.api().setTestnet(true);
+  }
+
+  // Logs out of account
+  logout() {
+    localStorage.clear();
+    this.props.history.push('/login');
   }
 
   // Generates a seed hex from a passphrase
@@ -57,7 +68,7 @@ class Platform extends React.Component {
     return template.call(
       this,
       this.detectFormChanges,
-      this.getKeysFromSecret,
+      this.logout,
       this.state.publicKey,
       this.state.privateKey
     );
