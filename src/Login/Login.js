@@ -9,10 +9,10 @@ class Login extends React.Component {
   bip39 = bip39;
 
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       passphrase: ''
-    }
+    }    
   }
 
   // Sets the state when form changes
@@ -29,19 +29,16 @@ class Login extends React.Component {
 
   // Signs in using pass phrase
   signIn() {
-    console.log(this.state.passphrase);
     const seedHex = this.generateSeedHex(this.state.passphrase);
     const keys = this.lisk.crypto.getAddress(seedHex);
-
-    console.log(keys);
 
     // Set keys on the state
     this.setState({
       privateKey: keys.privateKey,
       publicKey: keys.publicKey
     }, function() {
-      
-    });
+      this.props.history.push('/platform');
+    })
   }
 
   render() {
