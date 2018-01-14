@@ -4,6 +4,9 @@ import template from "./Platform.jsx";
 import bip39 from 'bip39';
 
 class Platform extends React.Component {
+  
+  lisk = window.lisk;
+  bip39 = bip39;
 
   constructor(props) {
     super();
@@ -17,11 +20,9 @@ class Platform extends React.Component {
     }
 
     // Set to lisk test net
-    this.setTestnet();
+    // this.setTestnet();
   }
   
-  lisk = window.lisk;
-  bip39 = bip39;
 
   // Sets lisk to test environment
   setTestnet() {
